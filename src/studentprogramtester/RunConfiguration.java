@@ -39,7 +39,7 @@ public class RunConfiguration extends JPanel{
     DataObject data; //= compilatron6000.Compilatron6000.data;  // moved to updateLabels()
     
     boolean isDemo = false;
-    
+    javax.swing.JTextArea text = new javax.swing.JTextArea();
     JTextArea displayResults;
    JFileChooser chooser;
    String choosertitle;
@@ -138,7 +138,12 @@ public class RunConfiguration extends JPanel{
         displayResults.setBounds(column(2), row(4), 560, 392);
         displayResults.setVisible(false);
         
-       
+   
+        text.setBackground(Color.blue);
+        text.setBounds(column(2), row(9), 760, 260);
+        text.setVisible(true);
+        
+        
         trivialEdit.setVisible(false);
         
         
@@ -247,6 +252,26 @@ public class RunConfiguration extends JPanel{
         this.add(testButtons);
         
         
+            this.add(  text  );
+        
+        new FileDrop( System.out, text, /*dragBorder,*/ new FileDrop.Listener()
+        {   public void filesDropped( java.io.File[] files )
+            {   for( int i = 0; i < files.length; i++ )
+                {   try
+                    {   
+                        // this is where you put where what happens when you drop
+                        text.append( files[i].getCanonicalPath() + "\n" );
+                         studentprogramtester.App.thisIsWhereYouPutTheMainFile = files[i].getCanonicalPath() +  "\\"; // need to add the slash here or it breaks
+                         studentprogramtester.App.runCon.runBatchButton.setVisible(true);
+                        text.append( "nailed it!" + "\n" );
+                    }   // end try
+                    catch( java.io.IOException e ) {}
+                }   // end for: through each dropped file
+            }   // end filesDropped
+        }); // end FileDrop.Listener
+        
+        
+        
         
         
      }  // end initialize components
@@ -331,7 +356,42 @@ private int column(int c){
                  
                 long howLongDidTestTake1 = System.currentTimeMillis();
                 
-                BatchTester b = new BatchTester();
+                
+                
+                
+                
+                
+ Thread t = new Thread() {
+                      @Override 
+                      public void run() {
+                           BatchTester b = new BatchTester(); 
+                      }
+                };
+    t.start();      
+                
+                
+                
+                
+                
+                
+                
+             
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 
                 long howLongDidTestTake2 = System.currentTimeMillis();
                 long totalTime = howLongDidTestTake2 - howLongDidTestTake1;
