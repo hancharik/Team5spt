@@ -29,7 +29,7 @@ public class WelcomeTab extends JPanel
         this.add(lblUname);
         jtfUname = new JTextField();
         jtfUname.setPreferredSize(new Dimension(100,20));
-        this.add(jtfUname);
+        //this.add(jtfUname);
         
         JLabel lblPwd = new JLabel("Password");
         this.add(lblPwd);
@@ -39,6 +39,15 @@ public class WelcomeTab extends JPanel
         btnLogin = new JButton("Login");
         btnLogin.addActionListener(alBtnLogin);
         this.add(btnLogin);
+        
+        
+ 
+        
+        
+        
+        
+        
+        
         
     }
 

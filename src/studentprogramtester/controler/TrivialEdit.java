@@ -52,7 +52,7 @@ public class TrivialEdit extends JFrame
 	private String currentDirectory = "./";
 	private JFileChooser fileDialog;  // File dialog for use in doOpen() and doSave().
 	private File editFile;  // The file, if any that is currently being edited.
-
+private JMenuBar k;
 	/**
 	* Create a TrivialEdit window, with a JTextArea where the user can
 	* edit some text and with a menu bar.
@@ -112,10 +112,11 @@ public class TrivialEdit extends JFrame
 				else if (cmd.equals("Open...")) {doOpen();}
 				else if (cmd.equals("Save...")) {doSave();}
 				else if (cmd.equals("Quit")) {doQuit();}
+                                else if (cmd.equals("Edit")) {doEdit();}
 			}
 		};
 
-		JMenu fileMenu = new JMenu("File");
+		JMenu fileMenu = new JMenu("Options");
 
 		JMenuItem newCmd = new JMenuItem("New");
 		newCmd.addActionListener(listener);
@@ -134,6 +135,12 @@ public class TrivialEdit extends JFrame
 		JMenuItem quitCmd = new JMenuItem("Quit");
 		quitCmd.addActionListener(listener);
 		fileMenu.add(quitCmd);
+                
+                fileMenu.addSeparator();
+      
+		JMenuItem editCmd = new JMenuItem("Edit");
+		editCmd.addActionListener(listener);
+		fileMenu.add(editCmd);
 
 		JMenuBar bar = new JMenuBar();
 		bar.add(fileMenu);
@@ -152,6 +159,17 @@ public class TrivialEdit extends JFrame
 		setTitle("TrivialEdit: Untitled");
 	}  // end doNew()
 
+        
+        	/**
+	* Create an untitled new file, clear all text from the JTextArea,
+	* and set the title bar of the window to read "TrivialEdit: Untitled".
+	*/
+	private void doEdit()
+	{
+		
+		
+		setTitle("Editing : FileName");
+	}  // end doNew()
 	/**
 	*  Save the text from the JTextArea to a file with filename specified by user in dialog box
 	*  specified by user in a FileChooser dialog box.
