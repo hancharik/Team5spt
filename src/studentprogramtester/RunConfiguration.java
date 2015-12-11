@@ -135,7 +135,7 @@ public class RunConfiguration extends JPanel{
         
         displayResults = new JTextArea();
         displayResults.setBackground(Color.lightGray);
-        displayResults.setBounds(column(2), row(4), 560, 392);
+        displayResults.setBounds(column(1), row(4), 640, 500);
         displayResults.setVisible(false);
         
    
@@ -166,7 +166,7 @@ public class RunConfiguration extends JPanel{
         runBatchButton.setBounds(column(1) + (buttonOffset+(buttonOffset/10)), row(8), 170, 26);
         runDemoBatchButton.setBounds(column(2), row(15), 170, 26);
         studentButtons = createResultButtons(studentprogramtester.App.roster.length);
-        studentButtons.setBounds(column(2)+ 30, row(15), 700, ((studentprogramtester.App.roster.length/7)+1)*50);
+        studentButtons.setBounds(column(1)+ 30, row(18), 700, ((studentprogramtester.App.roster.length/7)+1)*50);
         studentButtons.setVisible(false);
         
         testButtons = new JPanel(new GridLayout(5,1));//createTestResultButtons(data);
@@ -263,7 +263,8 @@ public class RunConfiguration extends JPanel{
                         text.append( files[i].getCanonicalPath() + "\n" );
                          studentprogramtester.App.thisIsWhereYouPutTheMainFile = files[i].getCanonicalPath() +  "\\"; // need to add the slash here or it breaks
                          studentprogramtester.App.runCon.runBatchButton.setVisible(true);
-                        text.append( "nailed it!" + "\n" );
+                         text.setVisible(false);
+                        //text.append( "nailed it!" + "\n" );
                     }   // end try
                     catch( java.io.IOException e ) {}
                 }   // end for: through each dropped file
@@ -290,7 +291,7 @@ private int column(int c){
     switch(c){  // these arent in cardinal order, i've been readjusting layouts
         case 1: columnPixelNumber = 210; break;
         case 2: columnPixelNumber = 10; break;
-        case 3: columnPixelNumber = 580; break;
+        case 3: columnPixelNumber = 980; break;
         case 4: columnPixelNumber = 400; break;
     }
     return columnPixelNumber;
@@ -393,18 +394,18 @@ private int column(int c){
                 
                 
                 
-                long howLongDidTestTake2 = System.currentTimeMillis();
-                long totalTime = howLongDidTestTake2 - howLongDidTestTake1;
-                int averageTimePerStudent = (int)totalTime/studentprogramtester.App.roster.length;
-                System.out.println("\n\n\nBatchTester.java ("  + studentprogramtester.App.roster.length+ " students) " + totalTime + " milliseconds (" + averageTimePerStudent + "/student)");
+             //   long howLongDidTestTake2 = System.currentTimeMillis();
+            //    long totalTime = howLongDidTestTake2 - howLongDidTestTake1;
+             //   int averageTimePerStudent = (int)totalTime/studentprogramtester.App.roster.length;
+            //    System.out.println("\n\n\nBatchTester.java ("  + studentprogramtester.App.roster.length+ " students) " + totalTime + " milliseconds (" + averageTimePerStudent + "/student)");
                // System.out.println("BatchTester.java took " + totalTime/1000 + "." + totalTime%1000 + " seconds, which was " + averageTimePerStudent/1000 + "." + averageTimePerStudent%1000 + " per student");
                 
                 
                 //// this is just to print out a timestamp on the test results, it's handy code to have:
-                Calendar c = Calendar.getInstance();
-                 System.out.format("%tB %te, %tY%n", c, c, c); // -->  "May 29, 2006"
+              //  Calendar c = Calendar.getInstance();
+                // System.out.format("%tB %te, %tY%n", c, c, c); // -->  "May 29, 2006"
                 // http://docs.oracle.com/javase/tutorial/java/data/numberformat.html
-                 System.out.format("%tl:%tM %tp%n", c, c, c);  // -->  "2:34 am"
+              //   System.out.format("%tl:%tM %tp%n", c, c, c);  // -->  "2:34 am"
                 
                 runBatchButton.setText("Run New Batch");
                 
@@ -560,7 +561,14 @@ private int column(int c){
      }       
              
     p = new JPanel(); 
-    p.setLayout(new GridLayout((numberOfStudents/7)+1,7));	
+    int rowNumber = 7;
+    int dividedBySeven = (numberOfStudents/rowNumber) + 1;
+    //p.setLayout(new GridLayout((numberOfStudents/7)+1,7));
+    if(numberOfStudents == 7){
+       p.setLayout(new GridLayout(1,7));  
+    }else{
+    p.setLayout(new GridLayout(dividedBySeven ,rowNumber));
+    }
     studentButtonArray = new SmartButton[numberOfStudents];
     for(int i = 0; i < studentButtonArray.length; i++){
         SmartButton b = new SmartButton();

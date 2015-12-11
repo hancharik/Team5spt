@@ -57,8 +57,9 @@ public final class StudentProgramTester extends JFrame {
         studentprogramtester.App.runCon = RCT;  // to access the panel
         //RunConfiguration RCT = new RunConfiguration();
 
-         tp.add("Instructions",WT);
          tp.add("Run Tests", RCT);
+         tp.add("Instructions",WT);
+         
          tp.add("Change Test Variables", ICT);
        
        
