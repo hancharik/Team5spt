@@ -17,28 +17,29 @@ import javax.swing.*;
  */
 public class WelcomeTab extends JPanel
 {
+    private String instructions = "grab your ankles and kiss your ass goodbye";
     private JButton btnLogin;
     JTextField jtfUname;
     JPasswordField pwd;
-    private JTabbedPane m_jt;
-    public WelcomeTab(JTabbedPane jtp)
+    private JTabbedPane mainPane;
+    public WelcomeTab(JTabbedPane tabbedPane)
     {
         super(new FlowLayout());
-        m_jt = jtp;
-        JLabel lblUname = new JLabel("Username");
-        this.add(lblUname);
+        mainPane = tabbedPane;
+        JLabel instructionsLabel2 = new JLabel(instructions);
+        this.add(instructionsLabel2);
         jtfUname = new JTextField();
         jtfUname.setPreferredSize(new Dimension(100,20));
         //this.add(jtfUname);
         
-        JLabel lblPwd = new JLabel("Password");
-        this.add(lblPwd);
+        JLabel instructionsLabel1 = new JLabel(instructions);
+        this.add(instructionsLabel1);
         pwd = new JPasswordField();
         pwd.setPreferredSize(new Dimension(100,20));
-        this.add(pwd);
+        //this.add(pwd);
         btnLogin = new JButton("Login");
         btnLogin.addActionListener(alBtnLogin);
-        this.add(btnLogin);
+        //this.add(btnLogin);
         
         
  
@@ -56,16 +57,7 @@ public class WelcomeTab extends JPanel
         {
              if (e.getSource() == btnLogin)
              {
-                 Boolean isOK = Utility.AuthenticateUser(jtfUname.getText(),new String(pwd.getPassword()));
-                 if (isOK)
-                 {
-                     // enable the panels
-                     m_jt.setEnabledAt(1, true);
-                     m_jt.setEnabledAt(2, true);
-                     m_jt.setEnabledAt(3, true);
-                     m_jt.setEnabledAt(4, true);
-                     
-                 }
+                
              }
         }        
     };

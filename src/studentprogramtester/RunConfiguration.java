@@ -68,7 +68,7 @@ public class RunConfiguration extends JPanel{
      
     
     public JLabel studentNameLabel = new JLabel("student name");
-    public JLabel explanationLabel = new JLabel("choose where you put the target file:");
+    public JLabel explanationLabel = new JLabel("drag the file into tthe blue box");
     public JLabel studentNumberLabel = new JLabel("student number" );
     public JLabel studentHandleLabel = new JLabel("student Handle");
     public JLabel pathLabel= new JLabel("path");
@@ -203,7 +203,7 @@ public class RunConfiguration extends JPanel{
         setArgsFileNameButton.setText("Set args file");
         
         showPathsButton.setText("Show Paths");
-        showPathToFileButton.setText("Set Path to File");
+        showPathToFileButton.setText("Am I the one?");
         
         
         
@@ -237,7 +237,7 @@ public class RunConfiguration extends JPanel{
         this.add(setOutputFileNameButton);
         this.add(setArgsFileNameButton);
         this.add(showPathsButton);
-        this.add(showPathToFileButton);
+       // this.add(showPathToFileButton);
         
         hideLabels();
         

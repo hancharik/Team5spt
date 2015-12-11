@@ -57,16 +57,16 @@ public final class StudentProgramTester extends JFrame {
         studentprogramtester.App.runCon = RCT;  // to access the panel
         //RunConfiguration RCT = new RunConfiguration();
 
-        tp.add("Login",WT);
-        tp.add("Application Configuration", AC);
-        tp.add("Program IO Configuration", ICT);
-        tp.add("Roster Configuration",SCT);
-        tp.add("Configure and Run", RCT);
+         tp.add("Instructions",WT);
+         tp.add("Run Tests", RCT);
+         tp.add("Change Test Variables", ICT);
+       
+       
+        
        // tp.add("Trivial Edit", TRV);
-        tp.setEnabledAt(1, false);
-        tp.setEnabledAt(2, false);
-        tp.setEnabledAt(3, false);
-        tp.setEnabledAt(4, false);
+        tp.setEnabledAt(1, true);
+        tp.setEnabledAt(2, true);
+        
        // tp.setEnabledAt(5, false);
         this.add(tp);
         
