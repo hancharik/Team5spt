@@ -68,7 +68,11 @@ public class RunConfiguration extends JPanel{
      
     
     public JLabel studentNameLabel = new JLabel("student name");
-    public JLabel explanationLabel = new JLabel("drag the file into tthe blue box");
+    
+    
+    public String explanation = "<html><h2><font color='blue'>it puts the file into the blue box </font><br><font color='red'>or else it gets the hose again</font><h2></html>";
+    
+    public JLabel explanationLabel = new JLabel(explanation);
     public JLabel studentNumberLabel = new JLabel("student number" );
     public JLabel studentHandleLabel = new JLabel("student Handle");
     public JLabel pathLabel= new JLabel("path");
@@ -140,7 +144,7 @@ public class RunConfiguration extends JPanel{
         
    
         text.setBackground(Color.blue);
-        text.setBounds(column(2), row(9), 760, 260);
+        text.setBounds(column(1), row(13), 560, 260);
         text.setVisible(true);
         
         
@@ -149,7 +153,7 @@ public class RunConfiguration extends JPanel{
         
         studentNumberLabel.setBounds(column(1), row(1), 400, 26);
         studentNameLabel.setBounds(column(1), row(2), 400, 26);
-        explanationLabel.setBounds(column(1), row(3), 400, 26);
+        explanationLabel.setBounds(column(1), row(7), 400, 260);
         studentHandleLabel.setBounds(column(1), row(3), 400, 26);
         pathLabel.setBounds(column(1), row(4), 400, 26);
         classPathLabel.setBounds(column(1), row(5), 400, 26);
@@ -164,7 +168,7 @@ public class RunConfiguration extends JPanel{
         runSingleButton.setBounds(column(2), row(1), 170, 26);
         runSingleButton.setVisible(false);
         runBatchButton.setBounds(column(1) + (buttonOffset+(buttonOffset/10)), row(8), 170, 26);
-        runDemoBatchButton.setBounds(column(2), row(15), 170, 26);
+        runDemoBatchButton.setBounds(column(1), row(1), 500, 285);
         studentButtons = createResultButtons(studentprogramtester.App.roster.length);
         studentButtons.setBounds(column(1)+ 30, row(18), 700, ((studentprogramtester.App.roster.length/7)+1)*50);
         studentButtons.setVisible(false);
@@ -209,10 +213,15 @@ public class RunConfiguration extends JPanel{
         
         runSingleButton.setText("Run Single");
         runBatchButton.setText("Run Batch");
-        runDemoBatchButton.setText("OS X / Demo Batch");
-        
+       // runDemoBatchButton.setText("OS X / Demo Batch");
+        //ImageIcon bill = new javax.swing.ImageIcon(getClass().getResource("/images/bb.gif"));
+        //setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/package1/package2/dump.jpg")));
+         ImageIcon bill = new ImageIcon("images/bb.gif");
+      
+        runDemoBatchButton.setIcon(bill);
+       // runDemoBatchButton.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/package1/package2/dump.jpg")));
         runBatchButton.setVisible(false);  // turn this off until the user selects the directory
-        runDemoBatchButton.setVisible(false);
+       // runDemoBatchButton.setVisible(false);
       
        
         this.setBackground(Color.white);
@@ -242,7 +251,7 @@ public class RunConfiguration extends JPanel{
         hideLabels();
         
         this.add(runBatchButton);
-    //  this.add(runDemoBatchButton);
+     this.add(runDemoBatchButton);
         this.add(displayResults);
         
         
@@ -264,7 +273,11 @@ public class RunConfiguration extends JPanel{
                          studentprogramtester.App.thisIsWhereYouPutTheMainFile = files[i].getCanonicalPath() +  "\\"; // need to add the slash here or it breaks
                          studentprogramtester.App.runCon.runBatchButton.setVisible(true);
                          text.setVisible(false);
-                        //text.append( "nailed it!" + "\n" );
+                            ImageIcon bill = new ImageIcon("images/Butters.png");
+      
+        runDemoBatchButton.setIcon(bill);
+          runDemoBatchButton.setBounds(column(1) + (buttonOffset+(buttonOffset/10)), row(2), 180, 180);
+                         explanationLabel.setText("<html><h2><font color='blue' size='6' face='verdana'>compiling: </font><font color='red'size='4'>" + files[i].getCanonicalPath() +  "</font><h2></html>");
                     }   // end try
                     catch( java.io.IOException e ) {}
                 }   // end for: through each dropped file
