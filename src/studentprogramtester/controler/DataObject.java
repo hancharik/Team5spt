@@ -275,9 +275,9 @@ Boolean[] passTest;
     
     setPth(pathToFile + "jdk1.7.0_71\\bin");
 //  set fixed paths and file names:
-    setSrcPath(pathToFile + "src-output");
+    setSrcPath(pathToFile + "output-files");
     setTestDataPath(pathToFile);
-    setArgsFileName(getTestDataPath() +  "args.txt");
+    setArgsFileName(getTestDataPath() +  "test-arguments.txt");
    
     setTestInputFileName( pathToFile + "testinput.txt");
 

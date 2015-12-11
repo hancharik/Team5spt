@@ -21,6 +21,9 @@ public class App {
     public static RunConfiguration runCon;  
     public static DataObject[] roster;
     public static String thisIsWhereYouPutTheMainFile  = "C:\\Users\\Mark\\Desktop\\target\\";  // this is where you put the "target" file
+    public static String outputFile  = "output-files";  // this is where you put the output of the test runs
+    public static String testArgumentFile  = "test-arguments.txt";  // this is where you put the output of the test runs
+     public static String testInputFile  = "testinput.txt";  // this is where you put the output of the test runs
    // we need to automate this process, right now the user sets the system by telling it where the home folder lives 
   // it seems like we could just test for windows, and if it is, we just add a  "C:\\"
     /* 

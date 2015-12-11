@@ -22,7 +22,7 @@ public class IOConfigTab extends JPanel
     JButton btnSave;
     JButton btnCancel;
     
-    String whereIsTheFolder = studentprogramtester.App.data.pathToFile;
+    String whereIsTheFolder = studentprogramtester.App.thisIsWhereYouPutTheMainFile;
     
     
     
@@ -41,11 +41,11 @@ public class IOConfigTab extends JPanel
 
         JLabel lblCmdLineArgs = new JLabel("Command Line Arguments");
         tbCMDLineArgs = new JTextArea();
-        tbCMDLineArgs.setText(Utility.getContentsOfFile(Utility.getConfigItem("ArgsTextFile", whereIsTheFolder + "args.txt")));
+        tbCMDLineArgs.setText(Utility.getContentsOfFile(Utility.getConfigItem("ArgsTextFile", whereIsTheFolder + studentprogramtester.App.testArgumentFile)));
 
         JLabel lblTestInput = new JLabel("System Inputs");
         tbTestInput = new JTextArea();
-        tbTestInput.setText(Utility.getContentsOfFile(Utility.getConfigItem("TestInputTextFile", whereIsTheFolder + "testinput.txt")));
+        tbTestInput.setText(Utility.getContentsOfFile(Utility.getConfigItem("TestInputTextFile", whereIsTheFolder + studentprogramtester.App.testInputFile)));
         
         btnSave = new JButton("Save");
         btnSave.addActionListener(ALSaveButton);
@@ -68,8 +68,8 @@ public class IOConfigTab extends JPanel
     {
         public void actionPerformed(ActionEvent ae)
         {
-            Utility.writeFile(Utility.getConfigItem("ArgsTextFile", whereIsTheFolder + "args.txt"), tbCMDLineArgs.getText());
-            Utility.writeFile(Utility.getConfigItem("TestInputTextFile", whereIsTheFolder + "testinput.txt"), tbTestInput.getText());
+            Utility.writeFile(Utility.getConfigItem("ArgsTextFile", whereIsTheFolder + studentprogramtester.App.testArgumentFile), tbCMDLineArgs.getText());
+            Utility.writeFile(Utility.getConfigItem("TestInputTextFile", whereIsTheFolder + studentprogramtester.App.testInputFile), tbTestInput.getText());
         }
 
     };

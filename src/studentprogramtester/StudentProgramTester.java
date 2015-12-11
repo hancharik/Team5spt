@@ -17,8 +17,8 @@ import studentprogramtester.controler.TrivialEdit;
 public final class StudentProgramTester extends JFrame {
 
     Container pane = getContentPane();
-    private final int FRAME_WIDTH = 800;
-    private final int FRAME_HEIGHT = 600;
+    private final int FRAME_WIDTH = 1200;
+    private final int FRAME_HEIGHT = 900;
     JTabbedPane tp;
 
     public StudentProgramTester() {

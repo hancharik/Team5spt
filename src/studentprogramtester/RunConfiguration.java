@@ -165,8 +165,8 @@ public class RunConfiguration extends JPanel{
         runSingleButton.setVisible(false);
         runBatchButton.setBounds(column(1) + (buttonOffset+(buttonOffset/10)), row(8), 170, 26);
         runDemoBatchButton.setBounds(column(2), row(15), 170, 26);
-        studentButtons = createResultButtons(data.totalNumberOfStudents);
-        studentButtons.setBounds(column(2)+ 30, row(15), 700, 50);
+        studentButtons = createResultButtons(studentprogramtester.App.roster.length);
+        studentButtons.setBounds(column(2)+ 30, row(15), 700, ((studentprogramtester.App.roster.length/7)+1)*50);
         studentButtons.setVisible(false);
         
         testButtons = new JPanel(new GridLayout(5,1));//createTestResultButtons(data);
@@ -560,7 +560,7 @@ private int column(int c){
      }       
              
     p = new JPanel(); 
-    p.setLayout(new GridLayout(1,numberOfStudents));
+    p.setLayout(new GridLayout((numberOfStudents/7)+1,7));	
     studentButtonArray = new SmartButton[numberOfStudents];
     for(int i = 0; i < studentButtonArray.length; i++){
         SmartButton b = new SmartButton();
@@ -716,7 +716,7 @@ private Color setColor(DataObject data, int arrayNumber){
            trivialEdit.dispose();
          // for some reason i'm getting a blank space at the beginning when I getText() from the button (maybe it's happening when we setText() - i looked, couldn't find the probem), havent found out why, starting the string at substring(1) fixes the problem
               if(currentSelectedStudent!=0){
-                  trivialEdit = new TrivialEdit(studentprogramtester.App.roster[currentSelectedStudent].pathToFile + "src-output\\student" + currentSelectedStudent + "\\" + thisButton.getText().substring(1));
+                  trivialEdit = new TrivialEdit(studentprogramtester.App.roster[currentSelectedStudent].pathToFile +  studentprogramtester.App.outputFile + "\\student" + currentSelectedStudent + "\\" + thisButton.getText().substring(1));
               }
             trivialEdit.setVisible(true);
             setSize(600, 600); 
@@ -782,9 +782,9 @@ private Color setColor(DataObject data, int arrayNumber){
     private String getStudentFile() {
         //return Utility.getConfigItem("StudentFilePath", whereIsTheFolder + "students.txt");
         if(currentSelectedStudent == 0){
-          return Utility.getConfigItem("StudentFilePath", "C:\\Users\\Mark\\Desktop\\target\\src-output\\mudgettdr\\output-mudgettdr.txt");  
+          return Utility.getConfigItem("StudentFilePath", studentprogramtester.App.thisIsWhereYouPutTheMainFile + studentprogramtester.App.outputFile + "\\mudgettdr\\output-mudgettdr.txt");  
         }else{
-        return Utility.getConfigItem("StudentFilePath", "C:\\Users\\Mark\\Desktop\\target\\src-output\\student" + currentSelectedStudent + "\\output-student" + currentSelectedStudent + ".txt");
+        return Utility.getConfigItem("StudentFilePath", studentprogramtester.App.thisIsWhereYouPutTheMainFile + studentprogramtester.App.outputFile + "\\student" + currentSelectedStudent + "\\output-student" + currentSelectedStudent + ".txt");
         }
         }
 
