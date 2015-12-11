@@ -52,7 +52,7 @@ public final class Utility {
    
     public static String getConfigFile() {
         String AbsolutePath = new File(".").getAbsolutePath();
-        return AbsolutePath + "config.properties";
+        return AbsolutePath + "config.txt";
     }
 
     public static void setConfigItem(String Item, String value) {
