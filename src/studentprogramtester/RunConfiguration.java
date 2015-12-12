@@ -277,6 +277,7 @@ public class RunConfiguration extends JPanel{
                          studentprogramtester.App.thisIsWhereYouPutTheMainFile = files[i].getCanonicalPath() +  "\\"; // need to add the slash here or it breaks
                          studentprogramtester.App.runCon.runBatchButton.setVisible(true);
                          text.setVisible(false);
+                         
                             ImageIcon bill = new ImageIcon("images/Butters.png");
       
         runDemoBatchButton.setIcon(bill);
@@ -425,7 +426,7 @@ private int column(int c){
               //   System.out.format("%tl:%tM %tp%n", c, c, c);  // -->  "2:34 am"
                 
                 runBatchButton.setText("Run New Batch");
-                
+                runBatchButton.setVisible(false);
                //updateLabels(studentprogramtester.App.roster[currentSelectedStudent]);
                
             }
@@ -498,6 +499,10 @@ private int column(int c){
     } // end ControlButtonListener
     
 
+    
+    
+    
+    
       private void hideRunButtons() {
           
           runSingleButton.setVisible(false);
@@ -507,6 +512,28 @@ private int column(int c){
             studentButtons.setVisible(true);
             showPathToFileButton.setVisible(false);
             explanationLabel.setVisible(false);
+            
+               studentNameLabel.setVisible(false);
+        studentNumberLabel.setVisible(false);
+        studentHandleLabel.setVisible(false);
+        
+        showPathsButton.setVisible(false);
+        runSingleButton.setVisible(false);
+        testButtons.setVisible(false);
+     runBatchButton.setVisible(false);
+           displayResults.setVisible(false);
+            
+            
+        for(int i = 0; i < studentButtonArray.length; i++){
+       
+        studentButtonArray[i].setBackground(Color.gray);
+       
+    }
+            
+            
+            
+            
+            
         }  // end hide run buttons
     
       
