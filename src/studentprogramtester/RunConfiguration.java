@@ -138,10 +138,12 @@ public class RunConfiguration extends JPanel{
         //showPathToFileButton.setVisible(false);
         
         displayResults = new JTextArea();
-        displayResults.setBackground(Color.lightGray);
+        displayResults.setBackground(new Color(89, 185, 217));
         displayResults.setBounds(column(1), row(4), 640, 500);
         displayResults.setVisible(false);
-        
+        Font font = new Font("Verdana", Font.BOLD, 12);
+        displayResults.setFont(font);
+        displayResults.setForeground(Color.YELLOW);
    
         text.setBackground(Color.blue);
         text.setBounds(column(1), row(13), 560, 260);
@@ -169,13 +171,15 @@ public class RunConfiguration extends JPanel{
         runSingleButton.setVisible(false);
         runBatchButton.setBounds(column(1) + (buttonOffset+(buttonOffset/10)), row(8), 170, 26);
         runDemoBatchButton.setBounds(column(1), row(1), 500, 285);
+        
         studentButtons = createResultButtons(studentprogramtester.App.roster.length);
         studentButtons.setBounds(column(1)+ 30, row(18), 700, ((studentprogramtester.App.roster.length/7)+1)*50);
         studentButtons.setVisible(false);
+        studentButtons.setBackground(new Color(89, 185, 217)); 
         
         testButtons = new JPanel(new GridLayout(5,1));//createTestResultButtons(data);
         testButtons.setBounds(column(3), row(1), 200, 260);
-        
+         testButtons.setBackground(new Color(89, 185, 217)); 
         //testButtons.setBackground(Color.red);
         testButton1 = new JButton();
         testButton2 = new JButton();
@@ -224,8 +228,8 @@ public class RunConfiguration extends JPanel{
        // runDemoBatchButton.setVisible(false);
       
        
-        this.setBackground(Color.white);
-        
+       // this.setBackground(new Color(R, G, B));
+        this.setBackground(new Color(89, 185, 217)); 
        
         this.add(studentNameLabel);
         this.add(explanationLabel);
