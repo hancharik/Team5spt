@@ -143,7 +143,7 @@ public class RunConfiguration extends JPanel{
         displayResults.setVisible(false);
         Font font = new Font("Verdana", Font.BOLD, 12);
         displayResults.setFont(font);
-        displayResults.setForeground(Color.YELLOW);
+        //displayResults.setForeground(Color.YELLOW);
    
         text.setBackground(Color.blue);
         text.setBounds(column(1), row(13), 560, 260);
