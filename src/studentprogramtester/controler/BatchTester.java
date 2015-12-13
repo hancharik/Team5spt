@@ -82,7 +82,15 @@ public  BatchTester()
        
         
        Compiler c = new Compiler(dataObject);
-        int success = c.compileJava(dataObject);
+       
+                Thread t = new Thread() {
+                                     @Override 
+                                     public void run() {
+                                          int success = c.compileJava(dataObject);
+                                     }
+                               };
+                   t.start();  
+       
        
 
         studentArrayNumber = runNumber - 1;
@@ -106,7 +114,7 @@ public  BatchTester()
         }
         else
         {
-          System.out.println("BatchTester.java (line 106) test for compile FAIL  Compile Exception, \nsuccess = " + success);
+          //System.out.println("BatchTester.java (line 106) test for compile FAIL  Compile Exception, \nsuccess = " + success);
           studentprogramtester.App.runCon.studentButtonArray[studentArrayNumber].setBackground(Color.red);
            studentprogramtester.App.runCon.studentButtonArray[studentArrayNumber].repaint();
           // studentprogramtester.App.runCon.updateLabels(studentprogramtester.App.data);

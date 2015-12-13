@@ -71,7 +71,7 @@ public class App {
            data = new DataObject();  // we will prob have to take this out, i'm using this as my config.properties file
              
            
-            int classSize = 7; // we need to get the # of students from the class file here
+            int classSize = 10; // we need to get the # of students from the class file here
            
            roster = new DataObject[classSize];
            
