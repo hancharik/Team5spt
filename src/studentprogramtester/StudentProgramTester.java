@@ -54,20 +54,22 @@ public final class StudentProgramTester extends JFrame {
         StudentConfigTab SCT = new StudentConfigTab();
            TrivialEdit TRV = new TrivialEdit();        
         RunConfiguration RCT = new RunConfiguration();
+        WizardBill wizard = new WizardBill();
         studentprogramtester.App.runCon = RCT;  // to access the panel
         //RunConfiguration RCT = new RunConfiguration();
 
          tp.add("Run Tests", RCT);
-         tp.add("Instructions",WT);
-         
          tp.add("Change Test Variables", ICT);
+         tp.add("Instructions",WT);
+          tp.add("Tutorial",wizard);
+         
        
        
         
        // tp.add("Trivial Edit", TRV);
         tp.setEnabledAt(1, true);
         tp.setEnabledAt(2, true);
-        
+        tp.setEnabledAt(3, true);
        // tp.setEnabledAt(5, false);
         this.add(tp);
         

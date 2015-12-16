@@ -71,9 +71,10 @@ public class DropPanel extends JPanel{
                         int G = (int)(Math.random( )*256);
                         int B= (int)(Math.random( )*256);
                         Color randomButtonColor = new Color(R, G, B);
-                        b.setText( R + "," + G + "," + B );  // this is informativ if you are interested in a particular color, shos the values
+                       // b.setText( R + "," + G + "," + B );  // this is informative if you are interested in a particular color, shows the values
+                        b.setText( contents.get(i) );  
                         b.setName(contents.get(i));
-                       //    b.setName(shortenString(rootFolder)+ "\\" + tempFolder + contents.get(i));
+                   //   b.setName(shortenString(rootFolder)+ "\\" + tempFolder + contents.get(i));
                         b.setBackground(randomButtonColor);
                         b.addActionListener(new DropPanel.StudentButtonListener());
                         studentButtonArray[i] = b;
@@ -141,6 +142,8 @@ public class DropPanel extends JPanel{
           
             SmartButton thisButton = (SmartButton) evt.getSource();
             try {
+                 text.setText(null);
+                text.append( "this goes to the readZipFile method in Droptest.java line 145\n" + shortenString(rootFolder)+ "\\" + thisButton.getName() + "\n" ); 
                 readZipFile(shortenString(rootFolder)+ "\\" + thisButton.getName());
             } catch (IOException ex) {
                 Logger.getLogger(DropPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -152,7 +155,7 @@ public class DropPanel extends JPanel{
  
   public static void readZipFile(String file) throws IOException{
       
-                            text.setText(null);     
+                           // text.setText(null);     
                             contents.clear();
                
     ZipFile zipFile = new ZipFile(file);
@@ -212,7 +215,7 @@ public class DropPanel extends JPanel{
       
 
     
-  
+  // this method is to knock off the .zip, right now it's hardwired to remove the last 4 chars (so a .docx would break it), the better solution is to truncate after the period in 'example.extention'
   public static String shortenString(String input){
       
       String shorterString = input.substring(0, input.length()-4);
