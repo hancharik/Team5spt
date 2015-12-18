@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package studentprogramtester;
 
 
@@ -270,8 +274,8 @@ public class WizardBill extends JPanel{
                     {   
                         // this is where you put where what happens when you drop
                         text.append( files[i].getCanonicalPath() + "\n" );
-                         studentprogramtester.App.thisIsWhereYouPutTheMainFile = files[i].getCanonicalPath() +  "\\"; // need to add the slash here or it breaks
-                         runBatchButton.setVisible(true);
+                         studentprogramtester.App.thisIsWhereYouPutTheMainFile = files[i].getCanonicalPath() + File.separator; // need to add the slash here or it breaks
+                         studentprogramtester.App.runCon.runBatchButton.setVisible(true);
                          text.setVisible(false);
                          
                             ImageIcon bill = new ImageIcon("images/Butters.png");

@@ -39,7 +39,8 @@ public class RunConfiguration extends JPanel{
     DataObject data; //= compilatron6000.Compilatron6000.data;  // moved to updateLabels()
     
     boolean isDemo = false;
-    javax.swing.JTextArea text = new javax.swing.JTextArea();
+   // javax.swing.JTextArea text = new javax.swing.JTextArea();
+    DropPanel text = new DropPanel();
     JTextArea displayResults;
    JFileChooser chooser;
    String choosertitle;
@@ -145,8 +146,8 @@ public class RunConfiguration extends JPanel{
         displayResults.setFont(font);
         //displayResults.setForeground(Color.YELLOW);
    
-        text.setBackground(Color.blue);
-        text.setBounds(column(1), row(13), 560, 260);
+        //text.setBackground(Color.blue);
+        text.setBounds(column(1), row(1), 900, 700);
         text.setVisible(true);
         
         
@@ -232,7 +233,7 @@ public class RunConfiguration extends JPanel{
         this.setBackground(new Color(89, 185, 217)); 
        
         this.add(studentNameLabel);
-        this.add(explanationLabel);
+      //  this.add(explanationLabel);
         this.add(studentNumberLabel);
         this.add(studentHandleLabel);
         this.add(outputFileNameLabel);
@@ -255,7 +256,7 @@ public class RunConfiguration extends JPanel{
         hideLabels();
         
         this.add(runBatchButton);
-     this.add(runDemoBatchButton);
+    // this.add(runDemoBatchButton);
         this.add(displayResults);
         
         
@@ -267,7 +268,13 @@ public class RunConfiguration extends JPanel{
         
             this.add(  text  );
         
-        new FileDrop( System.out, text, /*dragBorder,*/ new FileDrop.Listener()
+            
+            
+            
+   
+            
+       // new FileDrop( System.out, text, /*dragBorder,*/ new FileDrop.Listener()
+                   /*      
         {   public void filesDropped( java.io.File[] files )
             {   for( int i = 0; i < files.length; i++ )
                 {   try
@@ -289,7 +296,7 @@ public class RunConfiguration extends JPanel{
             }   // end filesDropped
         }); // end FileDrop.Listener
         
-        
+        */
         
         
         

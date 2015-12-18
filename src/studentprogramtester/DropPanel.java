@@ -5,11 +5,12 @@
  */
 package studentprogramtester;
 
-import studentprogramtester.controler.SmartButton;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -18,6 +19,8 @@ import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javax.swing.JPanel;
+import studentprogramtester.controler.SmartButton;
+
 
 /**
  *
@@ -25,21 +28,33 @@ import javax.swing.JPanel;
  */
 public class DropPanel extends JPanel{
     
-          public static ArrayList<String> contents = new ArrayList<String>();
-      public static final javax.swing.JTextArea text = new javax.swing.JTextArea();
+          public  ArrayList<String> contents = new ArrayList<String>();
+      public  final javax.swing.JTextArea text = new javax.swing.JTextArea();
+       String zipFilePath = "";
+      
+          String workingDirectoryUpOne = System.getProperty("user.dir"); // get the working directory
+          
+         
+      
+        public  String destDirectory = "";
+        UnzipUtility unzipper = new UnzipUtility();
         
-       public static String  rootFolder = "";
+        
+        
+       public  String  rootFolder = "";
       // public static String  tempFolder = " C:\\Users\\Mark\\AppData\\Local\\Temp\\";
        
       // public static JPanel p;// = new JPanel(); 
-         public static SmartButton[] studentButtonArray;
-         public static JPanel colored;
+         public  SmartButton[] studentButtonArray;
+         public  JPanel colored;
     
     
     public DropPanel(){
         
         super();
-        
+         workingDirectoryUpOne = workingDirectoryUpOne.replace( "ClassCreator", "");
+         destDirectory = workingDirectoryUpOne  + "bucket";//destDirectory = workingDirectoryUpOne + "\\" + "bucket";
+         System.out.println("bucket created at: " + destDirectory);
         createPanel();
         
         
@@ -47,7 +62,7 @@ public class DropPanel extends JPanel{
     
     
        
-   private static JPanel createResultButtons(int numberOfStudents){
+   private  JPanel createResultButtons(int numberOfStudents){
     
      
   
@@ -71,10 +86,9 @@ public class DropPanel extends JPanel{
                         int G = (int)(Math.random( )*256);
                         int B= (int)(Math.random( )*256);
                         Color randomButtonColor = new Color(R, G, B);
-                       // b.setText( R + "," + G + "," + B );  // this is informative if you are interested in a particular color, shows the values
-                        b.setText( contents.get(i) );  
+                        b.setText( R + "," + G + "," + B );  // this is informativ if you are interested in a particular color, shos the values
                         b.setName(contents.get(i));
-                   //   b.setName(shortenString(rootFolder)+ "\\" + tempFolder + contents.get(i));
+                       //    b.setName(shortenString(rootFolder)+ "\\" + tempFolder + contents.get(i));
                         b.setBackground(randomButtonColor);
                         b.addActionListener(new DropPanel.StudentButtonListener());
                         studentButtonArray[i] = b;
@@ -95,7 +109,7 @@ public class DropPanel extends JPanel{
        add(text);
         colored = new JPanel();
         colored.setLayout(new GridLayout(1 ,1));
-        colored.setBackground(Color.red);
+        colored.setBackground(Color.blue);
     //  colored = createResultButtons(4);
         add(colored);
     
@@ -106,9 +120,20 @@ public class DropPanel extends JPanel{
                 {   try
                     { 
                         
-                        
+                        // studentprogramtester.App.thisIsWhereYouPutTheMainFile = files[i].getCanonicalPath() +  "\\"; // need to add the slash here or it breaks
                            
-                            rootFolder = files[i].getCanonicalPath();
+                        rootFolder = files[i].getCanonicalPath();
+                         rootFolder = rootFolder.replace(File.separator, "/"); 
+                         studentprogramtester.App.thisIsWhereYouPutTheMainFile = rootFolder;
+                         System.out.println("studentprogramtester.App.thisIsWhereYouPutTheMainFile = " + rootFolder);
+                        studentprogramtester.App.className = shortenString(getTopFileFromString(rootFolder));
+                         System.out.println("Class name in App.java: " + getTopFileFromString( studentprogramtester.App.className));
+                         
+                      
+                        
+                        zipFilePath = rootFolder;
+                        
+                        createClassFolder();
     
                         readZipFile(files[i].getCanonicalPath());
        
@@ -137,44 +162,59 @@ public class DropPanel extends JPanel{
     
     
  // i just cut and pasted the control button listener and adapted it for the student button array
-     public static class StudentButtonListener implements ActionListener{ // i'm pretty sure this is from Fred's IST 311 class
+     public  class StudentButtonListener implements ActionListener{ // i'm pretty sure this is from Fred's IST 311 class
         public void actionPerformed(ActionEvent evt){
           
             SmartButton thisButton = (SmartButton) evt.getSource();
             try {
-                 text.setText(null);
-                text.append( "this goes to the readZipFile method in Droptest.java line 145\n" + shortenString(rootFolder)+ "\\" + thisButton.getName() + "\n" ); 
-                readZipFile(shortenString(rootFolder)+ "\\" + thisButton.getName());
+                String temp1 = destDirectory + File.separator + thisButton.getName();
+                
+                System.out.println("Contents of " + destDirectory + File.separator + thisButton.getName() + ":");
+                String tempString = destDirectory + File.separator + thisButton.getName();
+                tempString = tempString.split("/", 2)[0];
+           
+               System.out.println("Contents of tempstring: " + tempString);
+               System.out.println("Contents of temp1: " + temp1);
+                  temp1 = temp1.replace(tempString, "");
+                 System.out.println("Updated Contents of temp1: " + temp1);
+                readZipFile(destDirectory + File.separator + thisButton.getName());
+        
             } catch (IOException ex) {
-                Logger.getLogger(DropPanel.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(StudentProgramTester.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         }
     } // end studentButtonListener
  
  
-  public static void readZipFile(String file) throws IOException{
+  public void readZipFile(String file) throws IOException{
       
-                           // text.setText(null);     
+                            text.setText(null);     
                             contents.clear();
-               
+             
     ZipFile zipFile = new ZipFile(file);
     Enumeration<? extends ZipEntry> entries = zipFile.entries();
     while(entries.hasMoreElements()){
         ZipEntry entry = entries.nextElement();
         contents.add(entry.toString());
     }
-    
-        for(int k = 0; k < contents.size(); k++){
+    //text.append( "contents of " +contents.get(0) + "\n" ); 
+        for(int k = 0; k < contents.size(); k++){// for(int k = 1; k < contents.size(); k++){
                             
-                          text.append( contents.get(k) + "\n" ); 
-                       }
+                          text.append( contents.get(k) + "\n" ); // text.append( getTopFileFromString(contents.get(k)) + "\n" ); 
+                          String fullZipFile = destDirectory + File.separator + contents.get(k);
+                          System.out.println("Unzipping "  + fullZipFile);
+                         unzipper.unzip(fullZipFile, destDirectory + File.separator + "testClass1");
+                       
+        }
                        
           
   }  // end read zip file 
    
   
-    public static void createButtons(){
+  
+  
+    public void createButtons(){
                         //http://mathbits.com/MathBits/Java/Graphics/Color.htm
                         int R = (int) (Math.random( )*256);
                         int G = (int)(Math.random( )*256);
@@ -193,30 +233,24 @@ public class DropPanel extends JPanel{
                      
                         colored.removeAll();
                         colored.add(createResultButtons(contents.size()));
-                        
-                        //colored.setBackground(randomColor3);//.removeAll();
-                     //   p.repaint();
-                     //colored = createResultButtons(6);   
-                 //colored = createResultButtons(contents.size());
-                  // frame.getContentPane().remove(text);      
-                        
-                   
-                  // p.add(createResultButtons(contents.size()));
-                   
-                   
-                   
-                   
-                      //   frame.getContentPane().add( p , java.awt.BorderLayout.CENTER );
-                        
-                        
+           
                         
        }  // end create buttons                 
   
       
-
+public void unZipInnerFiles(){
     
-  // this method is to knock off the .zip, right now it's hardwired to remove the last 4 chars (so a .docx would break it), the better solution is to truncate after the period in 'example.extention'
-  public static String shortenString(String input){
+    for(int i = 0; i < contents.size(); i++){
+       
+        
+        
+        
+    }
+    
+}
+    
+  
+  public String shortenString(String input){
       
       String shorterString = input.substring(0, input.length()-4);
       
@@ -224,6 +258,42 @@ public class DropPanel extends JPanel{
       
       return shorterString;
   }  // end shorthen string
+ 
+  
+  // this unzips the file and creates a folder under the main working program directory
+    public void createClassFolder(){
+      
+      try {
+            unzipper.unzip(zipFilePath, destDirectory);
+        } catch (Exception ex) {
+            // some errors occurred
+            ex.printStackTrace();
+        }
+  }  // end shorthen string
+ 
+    public String getTopFileFromString(String temp1){
+        
+          String temp11 = temp1;
+               // for (int i = 0; i < 3; i++){ 
+                while (temp11.contains("/")){
+                
+                
+                String tempString2 = temp11;
+                tempString2 = tempString2.split("/", 2)[0]; //get everything before the first slash
+                tempString2 = tempString2 + "/";  // add the slash
+                temp11 = temp11.replace(tempString2, ""); //remove the first folder including the slash
+                
+                }
+            return temp11;
+    } // end get top file from string
+    
+    
+  public void unzipEverythingInside(String file){
+      
+      
+  }  
+    
+    
     
     
     
