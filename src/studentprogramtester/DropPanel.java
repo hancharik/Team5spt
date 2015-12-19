@@ -52,8 +52,8 @@ public class DropPanel extends JPanel{
     public DropPanel(){
         
         super();
-         workingDirectoryUpOne = workingDirectoryUpOne.replace( "ClassCreator", "");
-         destDirectory = workingDirectoryUpOne  + "bucket";//destDirectory = workingDirectoryUpOne + "\\" + "bucket";
+         workingDirectoryUpOne = workingDirectoryUpOne.replace( studentprogramtester.App.programFileName + File.separator, "");
+         destDirectory = workingDirectoryUpOne + File.separator + "bucket";//destDirectory = workingDirectoryUpOne + "\\" + "bucket";
          System.out.println("bucket created at: " + destDirectory);
         createPanel();
         
@@ -127,7 +127,7 @@ public class DropPanel extends JPanel{
                          studentprogramtester.App.thisIsWhereYouPutTheMainFile = rootFolder;
                          System.out.println("studentprogramtester.App.thisIsWhereYouPutTheMainFile = " + rootFolder);
                         studentprogramtester.App.className = shortenString(getTopFileFromString(rootFolder));
-                         System.out.println("Class name in App.java: " + getTopFileFromString( studentprogramtester.App.className));
+                         System.out.println("Class name in App.java: " + studentprogramtester.App.className);
                          
                       
                         
@@ -167,7 +167,7 @@ public class DropPanel extends JPanel{
           
             SmartButton thisButton = (SmartButton) evt.getSource();
             try {
-                String temp1 = destDirectory + File.separator + thisButton.getName();
+                String temp1 = destDirectory + File.separator + studentprogramtester.App.className + File.separator + thisButton.getName();
                 
                 System.out.println("Contents of " + destDirectory + File.separator + thisButton.getName() + ":");
                 String tempString = destDirectory + File.separator + thisButton.getName();
@@ -203,8 +203,10 @@ public class DropPanel extends JPanel{
                             
                           text.append( contents.get(k) + "\n" ); // text.append( getTopFileFromString(contents.get(k)) + "\n" ); 
                           String fullZipFile = destDirectory + File.separator + contents.get(k);
-                          System.out.println("Unzipping "  + fullZipFile);
-                         unzipper.unzip(fullZipFile, destDirectory + File.separator + "testClass1");
+                          System.out.println("Unzipping this here fullZipFile #" + k + ": "  + fullZipFile);
+                           System.out.println("This needs to be the destination directory: "  + destDirectory + File.separator + studentprogramtester.App.className);
+                         unzipper.unzip(fullZipFile, destDirectory + File.separator + studentprogramtester.App.className, k);
+                       //  unzipper.unzip(fullZipFile, destDirectory + File.separator + studentprogramtester.App.className);
                        
         }
                        
@@ -264,7 +266,7 @@ public void unZipInnerFiles(){
     public void createClassFolder(){
       
       try {
-            unzipper.unzip(zipFilePath, destDirectory);
+            unzipper.unzip(zipFilePath, destDirectory, 420);
         } catch (Exception ex) {
             // some errors occurred
             ex.printStackTrace();

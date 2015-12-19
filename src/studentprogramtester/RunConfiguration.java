@@ -60,8 +60,8 @@ public class RunConfiguration extends JPanel{
     
       JButton showPathToFileButton = new JButton();
     
-    public JButton runBatchButton = new JButton();
-    public JButton runDemoBatchButton = new JButton();
+    public RoundButton runBatchButton = new RoundButton("run");
+    public RoundButton runDemoBatchButton = new RoundButton("demo");
     
     
     

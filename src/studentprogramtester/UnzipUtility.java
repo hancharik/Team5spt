@@ -39,7 +39,7 @@ public class UnzipUtility {
      * @param destDirectory
      * @throws IOException
      */
-    public void unzip(String zipFilePath, String destDirectory) throws IOException {
+    public void unzip(String zipFilePath, String destDirectory, int k) throws IOException {
         File destDir = new File(destDirectory);
         if (!destDir.exists()) {
             destDir.mkdir();
@@ -65,8 +65,8 @@ public class UnzipUtility {
             zipIn.closeEntry();
             entry = zipIn.getNextEntry();
             }
-
-
+ System.out.println("This be the class name for #" + k + ": "  +  studentprogramtester.App.className);
+System.out.println("Whazaam! " + zipFilePath + "\nUnzipped to " + destDirectory);
         zipIn.close();
     }
     /**

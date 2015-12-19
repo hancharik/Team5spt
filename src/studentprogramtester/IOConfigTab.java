@@ -19,8 +19,8 @@ public class IOConfigTab extends JPanel
 {
     JTextArea tbCMDLineArgs;
     JTextArea tbTestInput;
-    JButton btnSave;
-    JButton btnCancel;
+    RoundButton btnSave;
+    RoundButton btnCancel;
     
     String whereIsTheFolder = studentprogramtester.App.thisIsWhereYouPutTheMainFile;
     
@@ -47,10 +47,10 @@ public class IOConfigTab extends JPanel
         tbTestInput = new JTextArea();
         tbTestInput.setText(Utility.getContentsOfFile(Utility.getConfigItem("TestInputTextFile", whereIsTheFolder + studentprogramtester.App.testInputFile)));
         
-        btnSave = new JButton("Save");
+        btnSave = new RoundButton("Save");
         btnSave.addActionListener(ALSaveButton);
         
-        btnCancel = new JButton("Cancel");
+        btnCancel = new RoundButton("Cancel");
 
         super.add(lblCmdLineArgs);
         super.add(tbCMDLineArgs);

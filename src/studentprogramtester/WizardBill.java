@@ -59,7 +59,7 @@ public class WizardBill extends JPanel{
     
       JButton showPathToFileButton = new JButton();
     
-    public JButton runBatchButton = new JButton();
+    public RoundButton runBatchButton = new RoundButton("run");
     public JButton runDemoBatchButton = new JButton();
     
     
@@ -275,7 +275,7 @@ public class WizardBill extends JPanel{
                         // this is where you put where what happens when you drop
                         text.append( files[i].getCanonicalPath() + "\n" );
                          studentprogramtester.App.thisIsWhereYouPutTheMainFile = files[i].getCanonicalPath() + File.separator; // need to add the slash here or it breaks
-                         studentprogramtester.App.runCon.runBatchButton.setVisible(true);
+                         runBatchButton.setVisible(true);
                          text.setVisible(false);
                          
                             ImageIcon bill = new ImageIcon("images/Butters.png");
